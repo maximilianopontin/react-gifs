@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-
+import './styles.css';
 
 function GalleryGifs() {
     const [gifs, setGifs] = useState([]); //Estado para almacenar los GIFs cargados
@@ -52,34 +52,28 @@ function GalleryGifs() {
     };
 
     return (
-        <div style={{ padding: '20px', textAlign: 'center' }}>
+        <div className="container-gifs">
             <h1>Galería de GIFs</h1>
             <input
                 type="file"
                 accept="image/gif"
                 multiple
                 onChange={handleFileUpload}
-                style={{ margin: '20px 0' }}
+
             />
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px' }}>
+            {error && <div className="error">{error}</div>}
+            <div className="gif-gallery">
                 {gifs.map((gif, index) => (
-                    <div key={index} style={{ margin: '10px' }}>
-                        <img
-                            src={gif}
-                            alt={`gif-${index}`}
-                            style={{
-                                width: '200px',
-                                height: '200px',
-                                objectFit: 'cover',
-                                borderRadius: '10px',
-                                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-                            }}
-                        />
-                    </div>
+                    <img key={index}
+                        src={gif}
+                        alt={`GIF ${index + 1}`} />
+
                 ))}
+
             </div>
+
         </div>
+
     );
 };
 export default GalleryGifs;
